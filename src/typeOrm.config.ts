@@ -6,7 +6,7 @@ export const DataSourceOption: DataSourceOptions = {
   port: 5432,
   username: 'postgres',
   password: 'postgres',
-  database: 'social_test',
+  database: 'file_system_test',
   entities: ['dist/**/*.entity{ .ts,.js}'],
   synchronize: true,
   migrations: ['dist/**/migrations/*{.ts,.js}'],
