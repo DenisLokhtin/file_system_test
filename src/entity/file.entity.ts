@@ -11,8 +11,8 @@ export class FileEntity {
   })
   createDateTime: Date;
 
-  @Column({ type: 'mediumblob' })
-  file: string;
+  @Column()
+  path: string;
 
   @Column()
   name: string;
