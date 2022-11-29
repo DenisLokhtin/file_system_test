@@ -6,7 +6,7 @@ import writeFile from '../../../middlewares/writeFile';
 import readFile from '../../../middlewares/readFile';
 import deleteFile from '../../../middlewares/deleteFile';
 const path = require('path');
-const savePath = path.join(__dirname, '../../data');
+const savePath = path.join(__dirname, '../../data/');
 
 @Injectable()
 export class FileService {
@@ -35,7 +35,12 @@ export class FileService {
     file: Express.Multer.File,
     name,
   ): Promise<
-    | ({ path: string; size: number; name: any; mimeType: string } & FileEntity)
+    | ({
+        path: string;
+        size: number;
+        name: string;
+        mimeType: string;
+      } & FileEntity)
     | string
   > {
     const reg = /\/(.*)/;

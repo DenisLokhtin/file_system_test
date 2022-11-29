@@ -31,7 +31,12 @@ export class FileController {
     @UploadedFile() file: Express.Multer.File,
     @Param('name') name,
   ): Promise<
-    | ({ path: string; size: number; name: any; mimeType: string } & FileEntity)
+    | ({
+        path: string;
+        size: number;
+        name: string;
+        mimeType: string;
+      } & FileEntity)
     | string
   > {
     return await this.fileService.createOne(file, name);
