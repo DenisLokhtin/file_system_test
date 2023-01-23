@@ -1,9 +1,4 @@
-import {
-  ConflictException,
-  Injectable,
-  NotFoundException,
-  StreamableFile,
-} from '@nestjs/common';
+import { Injectable, NotFoundException, StreamableFile } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FileEntity } from './entity/file.entity';
 import { Repository } from 'typeorm';
@@ -48,12 +43,6 @@ export class FileService {
       } & FileEntity)
     | string
   > {
-    const typeFile = file.mimetype.split('/')[1];
-    const typeName = name.split('.')[1];
-
-    if (typeFile !== typeName)
-      throw new ConflictException('types do not match');
-
     const newFile = await this.fileRepository.save({
       path: savePath + name,
       name: name,
