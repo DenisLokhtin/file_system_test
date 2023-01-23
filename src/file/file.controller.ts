@@ -4,20 +4,25 @@ import {
   Get,
   Param,
   Post,
+  Res,
+  StreamableFile,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileService } from './file.service';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { FileEntity } from '../../entity/file.entity';
+import { FileEntity } from './entity/file.entity';
 
 @Controller()
 export class FileController {
   constructor(private readonly fileService: FileService) {}
 
   @Get()
-  async getOne(@Param('name') name): Promise<FileEntity | string> {
-    return await this.fileService.getOne(name);
+  async getOne(
+    @Param('name') name,
+    @Res({ passthrough: true }) res,
+  ): Promise<StreamableFile> {
+    return await this.fileService.getOne(name, res);
   }
 
   @Get('info')
